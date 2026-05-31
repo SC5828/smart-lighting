@@ -52,7 +52,7 @@ h3 {
     margin-bottom: 0.75rem !important;
 }
 
-/* 卡片指标样式 - 精致卡片 */
+/* 卡片指标样式 */
 .element-container:has(.stMetric) {
     background: #f8f9fa !important;
     border-radius: 16px !important;
@@ -78,7 +78,7 @@ h3 {
     color: #2c3e50 !important;
 }
 
-/* 侧边栏样式 - 清新 */
+/* 侧边栏样式 */
 .css-1d391kg, .stSidebar {
     background-color: #f8f9fa !important;
     border-right: 1px solid #e9ecef !important;
@@ -96,7 +96,7 @@ hr {
     background: linear-gradient(90deg, #e0e0e0 0%, #e0e0e0 100%) !important;
 }
 
-/* 引用文字样式（描述语） */
+/* 引用文字样式 */
 .block-container .stMarkdown em, .block-container .stMarkdown blockquote {
     color: #6c757d !important;
     font-size: 0.85rem !important;
@@ -326,6 +326,7 @@ if avg_brightness < 30:
 elif avg_brightness > 80:
     suggestions.append("⚠️ 整体亮度过高，建议降至40-60范围")
 
+# 修复：正确的夜间数据筛选
 night_data = filtered_df   将streamlit导入为st[filtered_df["时段"].isin(["🌙 夜间", "🌃 深夜"])]
 if len(night_data) > 0:
     night_ct = night_data["色温"].mean()
@@ -340,40 +341,40 @@ if len(scene_counts) > 0:
 if len(suggestions) == 0:
     suggestions.append("✅ 当前照明系统运行良好")
 
-for s in suggestions:
-    if s.startswith("✅"):
+for s in suggestions:   对于建议：
+    if s.startswith("✅"):   if   如果 s.startswith("✅"):
         st.success(s)
-    elif s.startswith("⚠️"):
+    elif s.startswith("⚠️"):   elif s.startswith("⚠️"):
         st.warning(s)
-    else:
+    else:   其他:
         st.info(s)
 
-st.markdown("---")
+st.markdown("---")   st.markdown   减价(“-”)
 
 # ========== 关系分析 ==========
-st.markdown("### 🔍 亮度 vs 色温")
-fig7 = px.scatter(filtered_df, x="亮度", y="色温", color="场景", 
-                  size="响应时间", hover_data=["用户", "时段"],
+st.markdown("### 🔍 亮度 vs 色温")st.markdown   减价("### 🔍 亮度 vs 色温")
+fig7 = px.scatter(filtered_df, x="亮度", y="色温", color="场景", fig7 = px.scatter(filtered_df, x="亮度", y="色温", color="场景",
+                  size="响应时间", hover_data=["用户", "时段"],size="响应时间", hover_data=["用户", "时段"],
                   title="亮度与色温关系（点越大=响应时间越长）",
                   color_discrete_sequence=px.colors.qualitative.Pastel)
-fig7.update_layout(plot_bgcolor="white", height=450)
-st.plotly_chart(fig7, use_container_width=True)
+fig7.update_layout(plot_bgcolor="white", height=450)fig7.update_layout (plot_bgcolor =“white"、身高= 450)
+st.plotly_chart(fig7, use_container_width=True)st.plotly_chart (fig7 use_container_width = True   真正的)
 
-st.markdown("---")
+st.markdown("---")   st.markdown   减价(“-”)
 
 # ========== 数据表格 ==========
-with st.expander("📄 查看原始数据"):
-    st.dataframe(filtered_df, use_container_width=True)
+with st.expander("📄 查看原始数据"):with   与 st.expander("📄 查看原始数据"):
+    st.dataframe(filtered_df, use_container_width=True)st.dataframe (filtered_df use_container_width = True   真正的)
 
 # ========== 下载 ==========
-csv = filtered_df.to_csv(index=False).encode('utf-8')
+csv = filtered_df.to_csv(index=False).encode('utf-8')csv = filtered_df.to_csv(index=False   假).encode（'utf-8'）
 st.download_button(
-    label="📥 下载数据 (CSV)",
+    label="📥 下载数据 (CSV)",   label="📥 下载数据 (CSV)",
     data=csv,
-    file_name="照明数据.csv",
-    mime="text/csv"
+    file_name="照明数据.csv",   file_name="照明数据.csv",
+    mime="text/csv"   mime="text/csv"
 )
 
 # 页脚
-st.markdown("---")
+st.markdown("---")   st.markdown(“-”)
 st.caption("智能照明数据分析系统 · 数据驱动优化决策")
