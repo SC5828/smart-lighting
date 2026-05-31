@@ -7,8 +7,49 @@ from datetime import datetime
 # 页面配置
 st.set_page_config(page_title="智能照明系统分析", layout="wide", page_icon="💡")
 
-# 标题
-st.title("💡 智能照明数据分析系统")
+# ========== 自定义CSS（包含手机字体优化） ==========
+st.markdown("""
+<style>
+/* 渐变背景 */
+.stApp {
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+}
+/* 卡片样式 */
+.css-1r6slb0, .css-1v3fvcr {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px;
+}
+/* 标题美化 */
+h1 {
+    font-size: 2rem !important;
+    background: linear-gradient(135deg, #fff 0%, #a0a0ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+h2, h3 {
+    background: linear-gradient(135deg, #fff 0%, #a0a0ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* 手机屏幕适配 - 标题字体缩小一半 */
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 1rem !important;
+    }
+    /* 让卡片在手机上变成一列 */
+    .stColumn {
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
+
+# 标题（使用 markdown 方式，更易控制）
+st.markdown("# 💡 智能照明数据分析系统")
 st.markdown("> 基于真实用户数据的照明行为分析与优化建议")
 st.markdown("---")
 
